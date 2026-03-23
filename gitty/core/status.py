@@ -60,7 +60,7 @@ def status(repo_path: str):
                 if current_sha1_bytes != entry.sha1:
                     modified_red_updated.append(name)
                 else:
-                    # User Note: "如果哈希一致，要更新现有index里的元数据"
+                    # User Note: "If hashes match, update the metadata in the existing index entry"
                     entry.mtime = mtime_int
                     entry.ctime = ctime_int
                     entry.size = size_int

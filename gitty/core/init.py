@@ -24,7 +24,7 @@ def init(repo_path: str, default_name: str = None, default_email: str = None):
     if not name or not email:
         raise ValueError("Cannot initialize Gitty without user name and email.")
 
-    # 创建核心子目录
+    # Create core subdirectories
     dirs_to_create = [
         git_dir,
         os.path.join(git_dir, "objects"),
@@ -36,13 +36,13 @@ def init(repo_path: str, default_name: str = None, default_email: str = None):
         os.makedirs(d, exist_ok=True)
         logging.debug(f"Created directory: {d}")
 
-    # 创建 HEAD 文件
+    # Create HEAD file
     head_path = os.path.join(git_dir, "HEAD")
     with open(head_path, "w", encoding="utf-8") as f:
         f.write("ref: refs/heads/main\n")
     logging.debug(f"Created file: {head_path}")
 
-    # 创建 config 文件
+    # Create config file
     config_path = os.path.join(git_dir, "config")
     config_content = f"""[core]
 \trepositoryformatversion = 0
@@ -58,7 +58,7 @@ def init(repo_path: str, default_name: str = None, default_email: str = None):
         f.write(config_content)
     logging.debug(f"Created file: {config_path}")
 
-    # 创建 .gittyignore 文件
+    # Create .gittyignore file
     ignore_path = os.path.join(repo_path, ".gittyignore")
     if not os.path.exists(ignore_path):
         with open(ignore_path, "w", encoding="utf-8") as f:
