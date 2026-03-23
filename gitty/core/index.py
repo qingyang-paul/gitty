@@ -81,7 +81,7 @@ def write_index(repo_path: str, entries: List[IndexEntry]):
         entry_len = INDEX_ENTRY_SIZE + len(name_bytes)
         pad_len = 8 - (entry_len % 8)
         # In actual git, there is always at least 1 null byte for padding.
-        # But wait, from `gitty.md` it is just say name is 不定长. 
+        # But wait, from `gitty.md` it is just say name is variable-length.
         # If we pad, we must pad 1 to 8 bytes.
         if pad_len == 0:
             pad_len = 8
